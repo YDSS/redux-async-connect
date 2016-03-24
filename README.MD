@@ -71,7 +71,7 @@ app.get('*', (req, res) => {
   match({ routes, location: req.url }, (err, redirect, renderProps) => {
 
     // 1. load data
-    loadOnServer(renderProps, store).then(() => {
+    loadOnServer({...renderProps, store}).then(() => {
 
       // 2. use `ReduxAsyncConnect` instead of `RoutingContext` and pass it `renderProps`
       const appHTML = renderToString(
