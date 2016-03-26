@@ -131,9 +131,15 @@ export function asyncConnect(mapStateToProps) {
     Component.reduxAsyncConnect = (params, store, helpers) => componentLoadCb(mapStateToProps, params, store, helpers);
 
     const finalMapStateToProps = state => {
+        /**
+         * @question: what is state.reduxAsyncConnect?
+         */
       return Object.keys(mapStateToProps).reduce((result, key) => ({...result, [key]: state.reduxAsyncConnect[key]}), {});
     };
 
+    /**
+     * @note finially it use react-redux connect to bind promised result to compoent
+     */
     return connect(finalMapStateToProps)(Component);
   };
 }

@@ -53,6 +53,9 @@ class ReduxAsyncConnect extends React.Component {
   static propTypes = {
     components: array.isRequired,
     params: object.isRequired,
+    /**
+     * @note it's required but I don't see it
+     */
     render: func.isRequired,
     beginGlobalLoad: func.isRequired,
     endGlobalLoad: func.isRequired,
@@ -64,6 +67,9 @@ class ReduxAsyncConnect extends React.Component {
   };
 
   static defaultProps = {
+      /**
+       * @note finially use react-redux <RouterContext> API to render
+       */
     render(props) {
       return <RouterContext {...props} />;
     }
@@ -89,6 +95,9 @@ class ReduxAsyncConnect extends React.Component {
     }
   }
 
+  /**
+   * @question is this frequent that every time props change loadAsyncData will be called?
+   */
   componentWillReceiveProps(nextProps) {
     this.loadAsyncData(nextProps);
   }
